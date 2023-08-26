@@ -1,5 +1,5 @@
 import './App.css';
-import {BsFillMoonStarsFill} from 'react-icons/bs'
+import {BsFillMoonStarsFill, BsFillSunFill} from 'react-icons/bs'
 import {AiFillLinkedin, AiFillYoutube, AiFillGithub} from 'react-icons/ai'
 import bitmoji_waving from './images/bitmoji_waving.png'
 import django_logo from "./images/django_logo.png"
@@ -27,11 +27,14 @@ export const App = () => {
           <nav className="py-10 mb-12 flex justify-between">
             <h1 className="text-xl">Developed By</h1>
             <ul className='flex items-center'>
-              <li><BsFillMoonStarsFill className='cursor-pointer text-xl' onClick={()=> setDarkMode(!darkMode)}/></li>
+              <li>
+                {darkMode ? <BsFillSunFill className="cursor-pointer text-xl" onClick={()=> setDarkMode(!darkMode)}/> : <BsFillMoonStarsFill className="cursor-pointer text-xl" onClick={()=> setDarkMode(!darkMode)}/>}
+              </li>
+              {/* <li><BsFillMoonStarsFill className='cursor-pointer text-xl' /></li> */}
               <li className='bg-gradient-to-r from-cyan-500 to-teal-500 text-white px-4 py-2 rounded-md ml-8' href="#">Resume</li>
             </ul>
           </nav>
-          <div>
+          <div className='border-solid border-spacing-2'>
             <div>
               <h1 className="text-5xl text-teal-600 font-medium">Tommy Mac</h1>
               <h3 className='text-3xl py-2'>Software Engineer</h3>
@@ -39,14 +42,15 @@ export const App = () => {
               <DigitalClock />
             </div>
             <div className='flex m-20'>
-              <div className='p-10 w-1/4'>
+              <div className='p-10 w-1/3'>
                 <h1 className='text-center text-3xl'>About Me:</h1>
                 <div>
-                  <p className='text-md py-5 leading-8'>
-                    Graduated from University of Washington With a B.S in Biology. Started my career
-                    working in wet-lab at LabCorp where I later transition to Invitae and stayed with Invitae
-                    for ~ 3 years. I initially came to Invitae working in lab and was graciously offered an opportunity
-                    to take another role as Software Engineer where I participated in full development cycle (design/implementations) of 3 successful products. 
+                  <p className='text-md py-5 leading-8 '>
+                    Hi my name is Thanh, but I go by Tommy and I welcome you to my porfolio page.
+                    Here you will find everything you need about me and what I am capable of as an Engineer.
+                    I wanted to create this page to share not only my skills that I have acquired either through
+                    professional experience but also my eagerness to learn more and my strides to become a software
+                    engineer. I hope you enjoy as you scroll through.
                   </p>
                 </div>
                 <div className='relative bg-gradient-to-b from-teal-500 rounded-full w-80 h-80 mt-7 overflow-hidden'>
@@ -54,12 +58,12 @@ export const App = () => {
                 </div>
                 <div className='flex text-5xl gap-16 py-3 text-gray-600 ml-7 mt-7'>
                   <a target="blank" href="https://www.linkedin.com/in/tommy-mac-4a5087122/"><AiFillLinkedin className='cursor-pointer'/></a>
-                  <AiFillYoutube className='cursor-pointer'/>
+                  <a><AiFillYoutube className='cursor-pointer'/></a>
                   <a target="blank" href="https://github.com/heybro200"><AiFillGithub className='cursor-pointer'/></a>
                 </div>
               </div>
-              <div className='w-1/4 text-center'>
-                <h1 className='text-center text-3xl p-10'>Education:</h1>
+              <div className='w-1/3 p-10'>
+                <h1 className='text-center text-3xl'>Education:</h1>
                 <p className='text-md py-5 leading-8'>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
                 sed do eiusmod tempor incididunt ut labore et dolore magna 
@@ -76,7 +80,7 @@ export const App = () => {
                 </div>
                 
               </div>
-              <div className='w-1/4 ml-10'>
+              <div className='w-1/3 ml-10'>
                 <h2 className='text-center text-3xl p-10'>Technologies</h2>
                 <div className='flex relative justify-center'>
                   <img src={javascript_logo} className='w-20 h-20'/>
@@ -105,24 +109,28 @@ export const App = () => {
               
                 
               </div>
-              <div className='w-1/4'>
-                <h2 className='text-center text-3xl p-10'>Projects</h2>
-              </div>
             </div>
           </div>
           
           
         </section>
-        {/* comment */}
         <section>
-          <div className='text-center p-10'>
-            <h3 className='text-3xl py-1'>Services I offer</h3>
-            <p className='text-md py-2 leading-8 text-gray-800'>
-              Graduated from University of Washington With a B.S in Biochemistry. Started my career
-              working in wet-lab at LabCorp where I later transition to Invitae and stayed with Invitae
-              for ~ 3 years. I initially came to Invitae working in lab and was graciously offered an opportunity
-              to take another role as Software Engineer where I participated in full development cycle (design/implementations) of 3 successful products
+          <div className='p-10'>
+            <h3 className='text-3xl py-1'>Experiences:</h3>
+            <p className='text-md py-2 leading-8'>
+              I am a Software Engineer with roughly 2 years of experience. 
+              I started out my Engineering career at Invitae Biotechnology Co. 
+              I've participated in full-stack developement from working on frontend, 
+              backend projects utilizing modern technologies. 
+              During my time I have also mentored some young up and coming engineers 
+              fresh out of college or co-workers who have wanted to switched over to engineering.
             </p>
+            <h3 className="text-2xl py-2">Skills:</h3>
+            <ol>
+              <li>Backend Developement utilizing tools like Django, Flask</li>
+              <li>Front-End Development utilizing tools like React-Typescript</li>
+              <li>Experience with DOCKER </li>
+            </ol>
           </div>
         </section>
       </main>
