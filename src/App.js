@@ -13,8 +13,9 @@ import aws_logo from './images/aws_logo.png'
 import docker_logo from './images/docker_logo.png'
 import kubernetes_logo from './images/kubernetes_logo.png'
 import { useState } from 'react';
+import DigitalClock from './digitClock';
 
-function App() {
+export const App = () => {
   const [darkMode, setDarkMode] = useState(false)
   return (
     <div className={darkMode ? "dark" : ""}>
@@ -34,6 +35,8 @@ function App() {
             <div>
               <h1 className="text-5xl text-teal-600 font-medium">Tommy Mac</h1>
               <h3 className='text-3xl py-2'>Software Engineer</h3>
+              <h4 className='text-xl py-2'>Seattle, WA</h4>
+              <DigitalClock />
             </div>
             <div className='flex m-20'>
               <div className='p-10 w-1/4'>
