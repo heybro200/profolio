@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import {BsClock} from 'react-icons/bs'
 
 
 export const DigitalClock = () => {
@@ -12,8 +13,9 @@ export const DigitalClock = () => {
 
     setInterval(updateTime, 1000)
     return (
-        <div>
-            <h1>Time: {currentTime}</h1>
+        <div className='flex align-top'>
+            <BsClock className='mr-2 h-9'/>
+            <h5 className='text-xl py-2'>{currentTime}</h5>
         </div>
         
     )
