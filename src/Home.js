@@ -49,14 +49,14 @@ export const Home = () => {
                 coding bootcamp. There are many more different technologies
                 listed on my resume. Review my resume to find out!
                 </p>
-                <div className='flex relative justify-center py-6 m-4'>
+                <div className='border flex flex-wrap gap-3 justify-between py-6 m-4'>
                   <img src={python_logo} className='w-30 h-20'/>
-                  <img src={javascript_logo} className='w-20 h-20'/>
-                  <img src={django_logo} className='w-20 h-20' />
-                  <img src={react_logo} className='w-20 h-20'/>
+                  <img src={javascript_logo} className='w-30 h-20'/>
+                  <img src={django_logo} className='w-30 h-20' />
+                  <img src={react_logo} className='w-30 h-20'/>
                   <img src={typescript_logo} className='w-20 h-20' />
-                  <img src={aws_logo} className='w-25 h-20' />
-                  <img src={kubernetes_logo} className='w-25 h-20'/>
+                  <img src={aws_logo} className='w-30 h-20' />
+                  <img src={kubernetes_logo} className='w-30 h-20'/>
                   <img src={docker_logo} className='w-30 h-20'/>
                 </div>
               </div>
