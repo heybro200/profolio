@@ -15,7 +15,7 @@ export const Home = () => {
     return (
         <div className='px-10 border-solid border-spacing-2'>
             <div>
-              <h1 className="text-5xl text-teal-600 font-medium">Tommy Mac</h1>
+              <h1 className="text-6xl text-teal-600 font-medium mb-5">Tommy Mac</h1>
               <h3 className='text-3xl py-2'>Software Engineer</h3>
               <div className="flex align-top">
                 <CiLocationOn className="h-12 mr-2"/>
@@ -49,7 +49,7 @@ export const Home = () => {
                 coding bootcamp. There are many more different technologies
                 listed on my resume. Review my resume to find out!
                 </p>
-                <div className='border flex flex-wrap gap-3 justify-between py-6 m-4'>
+                <div className='border flex flex-wrap gap-3 justify-between py-6 m-4 dark:border-white'>
                   <img src={python_logo} className='w-30 h-20'/>
                   <img src={javascript_logo} className='w-30 h-20'/>
                   <img src={django_logo} className='w-30 h-20' />

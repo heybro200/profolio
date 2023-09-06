@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect, useCallback} from "react";
+import CloseIcon from '@mui/icons-material/Close';
 
 export const Weather = () => {
     const [city, setCity] = useState("")
@@ -17,8 +18,11 @@ export const Weather = () => {
     }
     const getCurrentLocationWeather = () => {
    
-        axios.get(process.env.REACT_APP_WEATHER_HOST, {params: {appid: process.env.REACT_APP_WEATHER_API_KEY, lon: currentLocation.longitude, lat: currentLocation.latitude}})
-            .then(r => setWeather([r.data]))
+        axios.get(process.env.REACT_APP_WEATHER_HOST, {params: {appid: process.env.REACT_APP_WEATHER_API_KEY, lon: currentLocation.longitude, lat: currentLocation.latitude, units:"imperial"}})
+            .then(r => {
+                r.data.name = "Current Location"
+                setWeather([r.data])
+            })
             .catch(err => setMessage(err.response.statusText))
         
     }
@@ -27,7 +31,7 @@ export const Weather = () => {
     }, [])
     
     useEffect(()=> {
-        if (Object.keys(currentLocation).length == 2) getCurrentLocationWeather()
+        if (Object.keys(currentLocation).length == 2) {getCurrentLocationWeather()} else console.log("Current Location Cannot be detected")
     }, [currentLocation])
     const date = new Date().toLocaleDateString()
     const handleSubmit = event => {
@@ -44,6 +48,11 @@ export const Weather = () => {
             })
             .catch(error => setMessage(error.response.statusText))
     }
+
+    const deleteSelectedWeather = (cityName) => {
+        const filteredWeather = weather.filter(w => w.name !== cityName)
+        setWeather([...filteredWeather])
+    }
     return (
     <div>
       <form className="w-1/3 ml-10" onSubmit={handleSubmit}>   
@@ -54,10 +63,10 @@ export const Weather = () => {
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                 </svg>
             </div>
-            <input onChange={handleOnChange} class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search by cities for weather..." required></input>
-            <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
-        </div>
-    </form>
+                <input onChange={handleOnChange} class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search by cities for weather..." required></input>
+                <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+            </div>
+        </form>
     
     {message && 
         <div role="alert" className="w-1/3 ml-10">
@@ -73,6 +82,7 @@ export const Weather = () => {
     {weather && weather.map(w => (
            
      <div className="flex flex-col items-center p-8 rounded-md w-60 sm:px-12 dark:bg-gray-900 dark:text-gray-100 border m-10">
+        <CloseIcon onClick={() => deleteSelectedWeather(w.name)} className="relative left-full mr-10 bottom-11 rounded-full bg-teal-600 hover:bg-red-400 cursor-pointer" />        
         <div className="text-center">
             <h2 className="text-xl font-semibold">{w.name}</h2>
             <p className="text-sm dark:text-gray-400">{date}</p>
