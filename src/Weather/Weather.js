@@ -1,13 +1,34 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect, useCallback} from "react";
 
 export const Weather = () => {
     const [city, setCity] = useState("")
     const [weather, setWeather] = useState([])
     const [message, setMessage] = useState("")
+    const [currentLocation, setCurrentLocation] = useState({})
     const handleOnChange = event => {
         setCity(event.target.value)
     }
+    const getCurrentLocation = async () => {
+        await navigator.geolocation.getCurrentPosition(
+            getCurrentLocation => setCurrentLocation({latitude: getCurrentLocation.coords.latitude, longitude:getCurrentLocation.coords.longitude})
+        )
+
+    }
+    const getCurrentLocationWeather = () => {
+   
+        axios.get(process.env.REACT_APP_WEATHER_HOST, {params: {appid: process.env.REACT_APP_WEATHER_API_KEY, lon: currentLocation.longitude, lat: currentLocation.latitude}})
+            .then(r => setWeather([r.data]))
+            .catch(err => setMessage(err.response.statusText))
+        
+    }
+    useEffect(() => {
+        getCurrentLocation()
+    }, [])
+    
+    useEffect(()=> {
+        if (Object.keys(currentLocation).length == 2) getCurrentLocationWeather()
+    }, [currentLocation])
     const date = new Date().toLocaleDateString()
     const handleSubmit = event => {
         event.preventDefault()

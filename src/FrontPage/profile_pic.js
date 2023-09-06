@@ -1,4 +1,4 @@
-import bitmoji_waving from './images/bitmoji_waving.png'
+import bitmoji_waving from '../images/bitmoji_waving.png'
 import {AiFillLinkedin, AiFillYoutube, AiFillGithub} from 'react-icons/ai'
 
 

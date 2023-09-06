@@ -3,10 +3,10 @@ import {BsFillMoonStarsFill, BsFillSunFill} from 'react-icons/bs'
 import { useState } from 'react';
 import resume from './images/resume.pdf'
 import { Routes, Route } from 'react-router-dom';
-import Home from "./Home"
-import Experience from './Experience';
-import Calculator from './calculator';
-import Weather from './Weather';
+import Home from "./FrontPage/Home"
+import Experience from './Experience/Experience';
+import Calculator from './Calculator/calculator';
+import Weather from './Weather/Weather';
 
 export const App = () => {
   const [darkMode, setDarkMode] = useState(true)
